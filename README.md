@@ -1,20 +1,14 @@
-# rzap 
+# rzap-ng
 
-This library provides an interface to controll shocker devices via [OpenShock](http://openshock.org)'s API
+This library provides an interface to control shocker devices via [OpenShock](http://openshock.org)'s API
 
-NOTE: This is an un-official API iterface created by someone who has just started learning rust, no guarantees are made and contributions are greatly welcomed
+> [!NOTE]
+> This is an un-official API interface, and a (hopefully temporary) fork of
+> [`LostQuasar/rzap`].
 
-```
-[dependencies]
-reqwest = { version = "0.11.27" }
-serde = { version = "1.0", features = ["derive"] }
-serde_json = "1.0"
-strum_macros = "0.26.4"
-strum = "0.26.2"
-tokio = { version = "1.21.2", features = ["macros", "rt-multi-thread"] }
-```
+[`LostQuasar/rzap`]: https://github.com/LostQuasar/rzap
 
-## Example 
+## Example
 
 A simple request to retrieve the API key user's id
 
@@ -31,7 +25,7 @@ A simple request to retrieve the API key user's id
         .with_default_api_token(openshock_token)
         .build()
         .unwrap();
-    
+
     println!(openshock_api.get_user_info(None).await.unwrap().id);
 ```
 

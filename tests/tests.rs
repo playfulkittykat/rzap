@@ -1,13 +1,6 @@
 use dotenv::dotenv;
-use rzap::{api::{ListShockerSource, OpenShockAPI},api_builder::OpenShockAPIBuilder, data_type::{ControlType, SelfResponse}, error::Error};
-use std::hash::{DefaultHasher, Hash, Hasher};
+use rzap_ng::{api::{ListShockerSource, OpenShockAPI},api_builder::OpenShockAPIBuilder, data_type::{ControlType, SelfResponse}, error::Error};
 
-
-fn calculate_hash<T: Hash>(t: &T) -> u64 {
-    let mut s = DefaultHasher::new();
-    t.hash(&mut s);
-    s.finish()
-}
 
 fn get_test_api() -> OpenShockAPI {
     dotenv().ok();
@@ -32,8 +25,8 @@ async fn get_shockers_test() {
 
     let result = openshock_api.get_shockers(ListShockerSource::Own, None).await;
     assert_eq!(
-        calculate_hash(&result.unwrap().unwrap()[0].shockers[0].id),
-        calculate_hash(&shocker_test_id)
+        &result.unwrap().unwrap()[0].shockers[0].id,
+        &shocker_test_id,
     );
 }
 
@@ -57,7 +50,7 @@ async fn get_user_info_test() {
 
     let result: Result<Option<SelfResponse>, Error> = openshock_api.get_user_info(None).await;
     assert_eq!(
-        calculate_hash(&result.unwrap().unwrap().id),
-        calculate_hash(&user_test_id)
+        &result.unwrap().unwrap().id,
+        &user_test_id,
     );
 }

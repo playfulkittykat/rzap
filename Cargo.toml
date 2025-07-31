@@ -1,19 +1,19 @@
 [package]
-name = "rzap"
-version = "0.2.1"
+name = "rzap-ng"
+version = "0.2.2"
 edition = "2021"
 license = "GPL-3.0"
 description = "Interface with OpenShock via Rust"
-documentation = "https://docs.rs/rzap/latest/rzap/"
-homepage = "https://github.com/LostQuasar/rzap"
-repository = "https://github.com/LostQuasar/rzap"
+documentation = "https://docs.rs/rzap-ng/latest/rzap-ng/"
+homepage = "https://github.com/playfulkittykat/rzap"
+repository = "https://github.com/playfulkittykat/rzap"
 
 [dependencies]
-reqwest = { version = "0.11.27" }
+reqwest = { version = "0.12.22" }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-strum_macros = "0.26.4"
-strum = "0.26.2"
+strum_macros = "0.27.2"
+strum = "0.27.2"
 tokio = { version = "1.21.2", features = ["macros", "rt-multi-thread"] }
 
 [dev-dependencies]
