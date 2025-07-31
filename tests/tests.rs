@@ -1,6 +1,10 @@
 use dotenv::dotenv;
-use rzap_ng::{api::{ListShockerSource, OpenShockAPI},api_builder::OpenShockAPIBuilder, data_type::{ControlType, SelfResponse}, error::Error};
-
+use rzap_ng::{
+    api::{ListShockerSource, OpenShockAPI},
+    api_builder::OpenShockAPIBuilder,
+    data_type::{ControlType, SelfResponse},
+    error::Error,
+};
 
 fn get_test_api() -> OpenShockAPI {
     dotenv().ok();
@@ -23,7 +27,9 @@ async fn get_shockers_test() {
     let shocker_test_id = dotenv::var("SHOCKER_TEST_ID").expect("missing SHOCKER_TEST_ID");
     assert_ne!(shocker_test_id, "");
 
-    let result = openshock_api.get_shockers(ListShockerSource::Own, None).await;
+    let result = openshock_api
+        .get_shockers(ListShockerSource::Own, None)
+        .await;
     assert_eq!(
         &result.unwrap().unwrap()[0].shockers[0].id,
         &shocker_test_id,
@@ -39,7 +45,10 @@ async fn post_control_test() {
     let result = openshock_api
         .post_control(shocker_test_id, ControlType::Sound, 1, 300, None)
         .await;
-    assert_eq!(&result.unwrap().unwrap(), &"Successfully sent control messages");
+    assert_eq!(
+        &result.unwrap().unwrap(),
+        &"Successfully sent control messages"
+    );
 }
 
 #[tokio::test]
@@ -49,8 +58,5 @@ async fn get_user_info_test() {
     assert_ne!(user_test_id, "");
 
     let result: Result<Option<SelfResponse>, Error> = openshock_api.get_user_info(None).await;
-    assert_eq!(
-        &result.unwrap().unwrap().id,
-        &user_test_id,
-    );
+    assert_eq!(&result.unwrap().unwrap().id, &user_test_id,);
 }

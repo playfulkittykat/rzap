@@ -31,7 +31,7 @@ pub enum ShockerModel {
     Petrainer998DR,
 }
 
-/// The base response used for most of the OpenShock API endpoints 
+/// The base response used for most of the OpenShock API endpoints
 #[derive(Serialize, Deserialize, Debug)]
 pub struct BaseResponse<T> {
     pub message: Option<String>,
@@ -54,7 +54,7 @@ pub struct ControlRequest {
     pub custom_name: String,
 }
 
-/// Describes how the shock should to send to the device 
+/// Describes how the shock should to send to the device
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct Shock {

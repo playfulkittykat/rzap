@@ -2,7 +2,7 @@ use crate::{api_builder::OpenShockAPIBuilder, data_type::*, error::Error};
 use std::fmt::Debug;
 use strum_macros::EnumString;
 
-/// All methods contain an `Option<String>` to provide an alternate api key to use if it differs from the default 
+/// All methods contain an `Option<String>` to provide an alternate api key to use if it differs from the default
 // Should they? probably not there gotta be a better way to do this.
 pub struct OpenShockAPI {
     pub client: reqwest::Client,
@@ -36,7 +36,10 @@ impl OpenShockAPI {
     }
 
     /// Gets user info from the provided API key, the default key from the instance is used if `None` is provided
-    pub async fn get_user_info(&self, api_key: Option<String>) -> Result<Option<SelfResponse>, Error> {
+    pub async fn get_user_info(
+        &self,
+        api_key: Option<String>,
+    ) -> Result<Option<SelfResponse>, Error> {
         let resp = self
             .client
             .get(format!("{}/1/users/self", self.base_url))
