@@ -29,7 +29,7 @@ impl std::fmt::Display for Error {
             Self::Reqwest(e) => e.fmt(f),
             Self::Serde(e) => e.fmt(f),
             Self::MissingApiToken => write!(f, "no API token was provided"),
-            Self::InvalidHeaderValue(e) => write!(f, "invalid header value for user agent: {}", e),
+            Self::InvalidHeaderValue(e) => write!(f, "invalid header value for user agent: {e}"),
         }
     }
 }

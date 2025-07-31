@@ -58,9 +58,9 @@ impl OpenShockAPIBuilder {
         // maybe add platform information as well?
         let app_name = if let Some(app_name) = self.app_name {
             if let Some(app_version) = self.app_version {
-                user_agent += &format!(" ({} {})", app_name, app_version);
+                user_agent += &format!(" ({app_name} {app_version})");
             } else {
-                user_agent += &format!(" ({})", app_name);
+                user_agent += &format!(" ({app_name})");
             }
             app_name
         } else {
@@ -78,7 +78,7 @@ impl OpenShockAPIBuilder {
         );
         headers.insert(
             header::USER_AGENT,
-            header::HeaderValue::from_str(&user_agent).map_err(|e| Error::InvalidHeaderValue(e))?,
+            header::HeaderValue::from_str(&user_agent).map_err(Error::InvalidHeaderValue)?,
         );
         let client = reqwest::Client::builder()
             .default_headers(headers)

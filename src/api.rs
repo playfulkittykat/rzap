@@ -98,10 +98,10 @@ impl OpenShockAPI {
 
         let control_request = serde_json::to_string(&ControlRequest {
             shocks: vec![Shock {
-                id: id,
-                control_type: control_type,
-                intensity: intensity,
-                duration: duration,
+                id,
+                control_type,
+                intensity,
+                duration,
                 exclusive: true,
             }],
             custom_name: self.app_name.clone(),
